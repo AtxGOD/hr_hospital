@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="hospital_doctor_psychiatrists_demo" model="hospital.doctor">
+        <field name="name">Psychiatrists</field>
+    </record>
+    <record id="hospital_doctor_neurologists_demo" model="hospital.doctor">
+        <field name="name">Neurologists</field>
+    </record>
+    <record id="hospital_doctor_pediatricians_demo" model="hospital.doctor">
+        <field name="name">Pediatricians</field>
+    </record>
+
+</odoo>
+
