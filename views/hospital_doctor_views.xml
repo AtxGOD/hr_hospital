@@ -37,7 +37,7 @@
         </field>
     </record>
 
-    <menuitem id="menu_hospital_doctor"
+    <menuitem id="hospital_doctor_menu"
               name="Doctors"
               parent="hospital_menu_root"
               action="hospital_doctor_action_view_form"

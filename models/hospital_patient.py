@@ -11,15 +11,15 @@ class HospitalPatient(models.Model):
                    ('female', 'Female')],
         default='male'
     )
-    disease = fields.Many2many(
+    disease_ids = fields.Many2many(
         comodel_name='hospital.disease',
     )
-    doctor = fields.Many2one(
+    doctor_id = fields.Many2one(
         comodel_name='hospital.doctor',
     )
     description = fields.Text(
         string='Description'
     )
-    time_visit = fields.Many2many(
+    time_visit_ids = fields.Many2many(
         comodel_name='hospital.visit',
     )

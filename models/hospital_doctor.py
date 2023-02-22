@@ -7,7 +7,7 @@ class HospitalDoctor(models.Model):
 
     name = fields.Char(string='Doctor name', required=True)
 
-    time_visit = fields.Many2many(
+    time_visit_ids = fields.Many2many(
         string='Time visit',
         comodel_name='hospital.visit',
     )

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
 
-    <record id="hospital_disease_diabetes_master" model="hospital.disease">
+    <record id="hospital_disease_diabetes_data" model="hospital.disease">
         <field name="name">Diabetes</field>
     </record>
-    <record id="hospital_disease_stomach_master" model="hospital.disease">
+    <record id="hospital_disease_stomach_data" model="hospital.disease">
         <field name="name">Stomach ake</field>
     </record>
-    <record id="hospital_disease_allergy_master" model="hospital.disease">
+    <record id="hospital_disease_allergy_data" model="hospital.disease">
         <field name="name">Allergy</field>
     </record>
 

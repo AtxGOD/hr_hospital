@@ -13,7 +13,7 @@ class HospitalVisit(models.Model):
         comodel_name='hospital.patient',
         string='Patient',
     )
-    time = fields.Date(
+    time_date = fields.Date(
         string='Visit time',
         default=fields.Date.today,
         help='The date when the patient will visit doctor.',
