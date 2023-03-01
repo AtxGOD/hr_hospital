@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="hospital_disease_virus_data" model="hospital.disease">
+        <field name="name">Virus</field>
+    </record>
+    <record id="hospital_disease_cancer_data" model="hospital.disease">
+        <field name="name">Cancer</field>
+    </record>
+    <record id="hospital_disease_allergy_data" model="hospital.disease">
+        <field name="name">Allergy</field>
+    </record>
+    <record id="hospital_disease_covid_data" model="hospital.disease">
+        <field name="name">COVID-19</field>
+        <field name="parent_id" ref="hospital_disease_virus_data"/>
+    </record>
+    <record id="hospital_disease_lung_cancer_data" model="hospital.disease">
+        <field name="name">Lung cancer</field>
+        <field name="parent_id" ref="hospital_disease_cancer_data"/>
+    </record>
+    <record id="hospital_disease_liver_cancer_data" model="hospital.disease">
+        <field name="name">Liver cancer</field>
+        <field name="parent_id" ref="hospital_disease_cancer_data"/>
+    </record>
+    <record id="hospital_disease_food_allergy_data" model="hospital.disease">
+        <field name="name">Food allergy</field>
+        <field name="parent_id" ref="hospital_disease_allergy_data"/>
+    </record>
+
+</odoo>
+
