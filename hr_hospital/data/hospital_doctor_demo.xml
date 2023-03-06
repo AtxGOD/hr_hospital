@@ -2,14 +2,16 @@
 <odoo noupdate="1">
 
     <record id="hospital_doctor_psychiatrists_demo" model="hospital.doctor">
-        <field name="name">Psychiatrists</field>
+        <field name="name">Artem</field>
+        <field name="specialty">Psychiatrists</field>
     </record>
     <record id="hospital_doctor_neurologists_demo" model="hospital.doctor">
-        <field name="name">Neurologists</field>
+        <field name="name">Leonid</field>
+        <field name="specialty">Neurologists</field>
     </record>
     <record id="hospital_doctor_pediatricians_demo" model="hospital.doctor">
-        <field name="name">Pediatricians</field>
+        <field name="name">Vitaliy</field>
+        <field name="specialty">Pediatricians</field>
     </record>
 
 </odoo>
-

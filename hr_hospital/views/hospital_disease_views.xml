@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hospital_analysis_tree" model="ir.ui.view">
+        <field name="name">hospital.analysis.tree</field>
+        <field name="model">hospital.analysis</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="doctor_id"/>
+                <field name="patient_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hospital_disease_view_search" model="ir.ui.view">
+        <field name="name">hospital.disease.search</field>
+        <field name="model">hospital.disease</field>
+        <field name="arch" type="xml">
+            <search string="Disease">
+                <field name="name"/>
+                <searchpanel>
+                    <field name="parent_id" string="Diseases" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="hospital_disease_action_view" model="ir.actions.act_window">
+        <field name="name">Disease</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.disease</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add new disease</p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_disease_submenu"
+              name="Disease"
+              parent="hospital_menu_root"
+              action="hospital_disease_action_view"
+              sequence="6"/>
+
+</odoo>

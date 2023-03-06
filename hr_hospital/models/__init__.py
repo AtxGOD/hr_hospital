@@ -6,3 +6,4 @@ from . import hospital_visit
 from . import hospital_diagnosis
 from . import hospital_doctor_schedule
 from . import hospital_history_doctor_change
+from . import hospital_analysis

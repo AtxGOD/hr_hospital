@@ -12,5 +12,5 @@ class HospitalPersonAbstractMixing(models.AbstractModel):
     gender = fields.Selection(
         selection=[('male', 'Male'),
                    ('female', 'Female')],
-        default='male'
+        default='male',
     )

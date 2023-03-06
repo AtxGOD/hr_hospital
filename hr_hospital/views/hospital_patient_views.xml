@@ -27,15 +27,47 @@
                 <header>
                     <button name="%(action_change_visit_time)d" string="Change visit time" class="btn-primary"
                             type="action"/>
+                    <button name="action_open_doctor_schedule" string="Doctor Schedule" class="btn-primary"
+                            type="object"/>
+                    <button name="action_new_appointment" string="New Appointment" class="btn-primary"
+                            type="object"/>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="name"/>
-                        <field name="gender"/>
-                        <field name="birthday_date"/>
-                        <field name="age"/>
-                        <field name="doctor_id"/>
+                        <group>
+                            <field name="gender"/>
+                            <field name="birthday_date"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                            <field name="doctor_id"/>
+                            <field name="phone_number"/>
+                        </group>
                     </group>
+                    <notebook>
+                        <page string="Visit history" name="visit_history">
+                            <field name="visit_history_ids" readonly="1">
+                                <tree>
+                                    <field name="doctor_id"/>
+                                    <field name="time_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Diagnosis history" name="diagnosis_history">
+                            <field name="diagnosis_history_ids" readonly="1">
+                                <tree>
+                                    <field name="disease_id"/>
+                                    <field name="doctor_id"/>
+                                    <field name="diagnosis_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -55,6 +87,6 @@
               name="Patients"
               parent="hospital_menu_root"
               action="hospital_patient_action_view_form"
-              sequence="10"/>
+              sequence="1"/>
 
 </odoo>

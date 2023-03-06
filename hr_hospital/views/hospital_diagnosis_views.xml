@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hospital_doctor_schedule_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.schedule.tree</field>
+        <field name="model">hospital.doctor.schedule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="doctor_id"/>
+                <field name="reception_time"/>
+                <field name="reception_date"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

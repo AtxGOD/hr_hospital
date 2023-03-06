@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hospital_doctor_schedule_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.schedule.tree</field>
+        <field name="model">hospital.doctor.schedule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="doctor_id"/>
+                <field name="reception_time"/>
+                <field name="reception_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hospital_doctor_calendar" model="ir.ui.view">
+        <field name="name">hospital.doctor.calendar</field>
+        <field name="model">hospital.doctor.schedule</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments" date_start="reception_date">
+                <field name="doctor_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="hospital_doctor_schedule_action_view_form" model="ir.actions.act_window">
+        <field name="name">Doctor schedule</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.doctor.schedule</field>
+        <field name="view_mode">calendar</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add new doctor</p>
+        </field>
+    </record>
+
+</odoo>

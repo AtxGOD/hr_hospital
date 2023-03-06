@@ -8,7 +8,9 @@ class HospitalDoctorSchedule(models.Model):
 
     doctor_id = fields.Many2one(
         comodel_name='hospital.doctor',
-        string='Doctor',
+    )
+    patient_id = fields.Many2one(
+        comodel_name='hospital.patient',
     )
     reception_time = fields.Integer(string='Time')
     reception_date = fields.Date(
@@ -26,3 +28,10 @@ class HospitalDoctorSchedule(models.Model):
             ])
             if result:
                 raise ValidationError(_('Chose another time'))
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = rec.doctor_id.name
+            result.append((rec.id, name))
+        return result

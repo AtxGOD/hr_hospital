@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+<!--    <record id="hospital_doctor_calendar" model="ir.ui.view">-->
+<!--        <field name="name">hospital.doctor.calendar</field>-->
+<!--        <field name="model">hospital.doctor.schedule</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <calendar string="Appointments" date_start="reception_date">-->
+<!--                <field name="doctor_id"/>-->
+<!--            </calendar>-->
+<!--        </field>-->
+<!--    </record>-->
+
     <record id="hospital_doctor_tree" model="ir.ui.view">
         <field name="name">hospital.doctor.tree</field>
         <field name="model">hospital.doctor</field>
@@ -25,28 +35,142 @@
                             type="action"/>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="name"/>
+                        <field name="specialty"/>
+                        <field name="intern"/>
+                        <field name="doctor_mentor_id"/>
                     </group>
+                    <notebook>
+                        <page string="Interns" name="interns">
+                            <field name="intern_ids" readonly="1">
+                                <kanban>
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_global_click">
+                                                <div class="oe_kanban_details">
+                                                    <ul>
+                                                        <li>
+                                                            <field name="name"/>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <record id="hospital_doctor_view_kanban" model="ir.ui.view">
+            <field name="name">hospital.doctor.kanban</field>
+            <field name="model">hospital.doctor</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div>
+                                    <strong>Name:</strong>
+                                    <field name="name"/>
+                                </div>
+                                <div>
+                                    <strong>Specialty:</strong>
+                                    <field name="specialty"/>
+                                </div>
+                                <div>
+                                    <strong>Is intern:</strong>
+                                    <field name="intern"/>
+                                </div>
+                                <div>
+                                        <button name="action_new_appointment" string="New Appointment" class="btn-primary"
+                                                type="object">
+                                            <span>New Appointment</span>
+                                        </button>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    <record id="hospital_doctor_view_search" model="ir.ui.view">
+        <field name="name">hospital.doctor.search</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <search string="Doctor">
+                <field name="name"/>
+                <separator/>
+                <filter string="Intern" name="intern" domain="[('intern', '=', True)]"/>
+                <filter string="Mentor" name="mentor" domain="[('intern_ids', 'ilike', '')]"/>
+                <filter string="Without patient" name="without_patient" domain="[('patients_ids', 'not ilike', '')]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Specialty" name="specialty" context="{'group_by':'specialty'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="hospital_diagnosis_pivot" model="ir.ui.view">
+        <field name="name">hospital.diagnosis.pivot</field>
+        <field name="model">hospital.diagnosis</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="disease_id" type="row"/>
+                <field name="diagnosis_date" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="hospital_diagnosis_graph" model="ir.ui.view">
+        <field name="name">hospital.diagnosis.graph</field>
+        <field name="model">hospital.diagnosis</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="disease_id"/>
+                <field name="diagnosis_date"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="hospital_doctor_action_view_form" model="ir.actions.act_window">
-        <field name="name">Doctor</field>
+        <field name="name">Doctors</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.doctor</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form,pivot,graph</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Add new doctor</p>
         </field>
     </record>
 
     <menuitem id="hospital_doctor_menu"
-              name="Doctors"
+              name="Doctor"
               parent="hospital_menu_root"
               action="hospital_doctor_action_view_form"
+              sequence="2"/>
+
+    <menuitem id="hospital_doctor_submenu"
+              name="Doctors"
+              parent="hospital_doctor_menu"
+              action="hospital_doctor_action_view_form"
+              sequence="9"/>
+
+    <menuitem id="hospital_doctor_schedule_submenu"
+              name="Calendar"
+              parent="hospital_doctor_menu"
+              action="hospital_doctor_schedule_action_view_form"
               sequence="10"/>
 
 </odoo>
