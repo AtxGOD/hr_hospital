@@ -20,7 +20,7 @@
             <search string="Disease">
                 <field name="name"/>
                 <searchpanel>
-                    <field name="parent_id" string="Diseases" enable_counters="1"/>
+                    <field name="parent_id" string="Diseases" hierarchize="1" enable_counters="1"/>
                 </searchpanel>
             </search>
         </field>
