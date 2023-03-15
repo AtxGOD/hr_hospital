@@ -25,6 +25,7 @@
         'views/hospital_doctor_views.xml',
         'data/hospital_disease_data.xml',
         'report/disease_report.xml',
+        'report/doctor_report.xml',
         'report/report.xml',
     ],
     'demo': [

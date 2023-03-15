@@ -11,4 +11,14 @@
         <field name="binding_type">report</field>
     </record>
 
+    <record id="doctor_report" model="ir.actions.report">
+        <field name="name">Doctor report</field>
+        <field name="model">hospital.doctor</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_hospital.doctor_report_view</field>
+        <field name="report_file">hr_hospital.doctor_report_view</field>
+        <field name="binding_model_id" ref="model_hospital_doctor"/>
+        <field name="binding_type">report</field>
+    </record>
+
 </odoo>

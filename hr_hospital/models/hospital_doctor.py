@@ -22,8 +22,10 @@ class HospitalDoctor(models.Model):
         inverse_name='doctor_id',
         string="Patients",
     )
-
-    test_data = fields.Date(default=fields.Datetime.today)
+    diagnosis_history_ids = fields.One2many(
+        comodel_name='hospital.diagnosis',
+        inverse_name='doctor_id',
+    )
 
     def action_new_appointment(self):
         return {

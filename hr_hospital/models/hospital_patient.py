@@ -22,6 +22,12 @@ class HospitalPatient(models.Model):
         comodel_name='hospital.diagnosis',
         inverse_name='patient_id',
     )
+    degree_of_morbidity = fields.Selection(
+        selection=[('low', 'Low'),
+                   ('medium', 'Medium'),
+                   ('high', 'High')],
+        default='low',
+    )
 
     def calculate_date(self):
         for rec in self:
@@ -55,3 +61,10 @@ class HospitalPatient(models.Model):
             'views': [[False, 'form']],
             'target': 'current',
         }
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = rec.name
+            result.append((rec.id, name))
+        return result

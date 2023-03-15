@@ -19,4 +19,3 @@ class HospitalDiagnosis(models.Model):
         string='Disease',
     )
     appointment = fields.Text()
-

@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!--    <record id="hospital_doctor_calendar" model="ir.ui.view">-->
-<!--        <field name="name">hospital.doctor.calendar</field>-->
-<!--        <field name="model">hospital.doctor.schedule</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <calendar string="Appointments" date_start="reception_date">-->
-<!--                <field name="doctor_id"/>-->
-<!--            </calendar>-->
-<!--        </field>-->
-<!--    </record>-->
-
     <record id="hospital_doctor_tree" model="ir.ui.view">
         <field name="name">hospital.doctor.tree</field>
         <field name="model">hospital.doctor</field>
@@ -44,6 +34,7 @@
                         <field name="specialty"/>
                         <field name="intern"/>
                         <field name="doctor_mentor_id"/>
+                        <field name="diagnosis_history_ids"/>
                     </group>
                     <notebook>
                         <page string="Interns" name="interns">
@@ -78,9 +69,21 @@
             <field name="model">hospital.doctor</field>
             <field name="arch" type="xml">
                 <kanban class="o_kanban_mobile" sample="1">
+                    <field name="patients_ids"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
+
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    </div>
+                                </div>
+
                                 <div>
                                     <strong>Name:</strong>
                                     <field name="name"/>
@@ -92,6 +95,18 @@
                                 <div>
                                     <strong>Is intern:</strong>
                                     <field name="intern"/>
+                                </div>
+                                <div>
+                                    <strong>Patients:</strong>
+                                    <span t-esc="record.name.raw_value"/>
+<!--                                    <p><span t-esc="record.patients_ids.name"/></p>-->
+                                    <ul>
+                                        <t t-foreach="record.patients_ids.raw_value" t-as="patient">
+                                            <li>
+                                                <span t-esc="patient"/>
+                                            </li>
+                                        </t>
+                                    </ul>
                                 </div>
                                 <div>
                                         <button name="action_new_appointment" string="New Appointment" class="btn-primary"
