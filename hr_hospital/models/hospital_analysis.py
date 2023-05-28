@@ -22,5 +22,3 @@ class HospitalAnalysis(models.Model):
     @api.onchange('patient_id')
     def _onchange_patient_id(self):
         self.patient_number = self.patient_id.phone_number
-
-        #test
